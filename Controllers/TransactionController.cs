@@ -30,10 +30,10 @@ namespace Levva.Newbie.Coins.Controllers
             return Created("Transaction created", createdTransaction);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<TransactionDto> Get(int Id)
+        [HttpGet("{SearchInput}")]
+        public ActionResult<List<TransactionDto>> Get(string SearchInput)
         {
-            return _service.Get(Id);
+            return _service.Search(SearchInput);
         }
 
         [HttpGet("list")]
@@ -41,17 +41,17 @@ namespace Levva.Newbie.Coins.Controllers
         {
             if (search == null) return _service.GetAll();
 
-            return _service.SearchDescription(search);
+            return _service.GetAll();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Update(TransactionDto transaction)
         {
             _service.Update(transaction);
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public IActionResult Delete(int Id)
         {
             _service.Delete(Id);

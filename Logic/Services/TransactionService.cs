@@ -48,10 +48,18 @@ namespace Levva.Newbie.Coins.Logic.Services
             _repository.Update(_transaction);
         }
 
-        public List<TransactionDto> SearchDescription(string search)
+        public List<TransactionDto> Search(string search)
         {
-            var transactions = _repository.SearchByDescription(search);
-            return _mapper.Map<List<TransactionDto>>(transactions);
+            var transactions = _repository.GetAll();
+            var searchedTransaction = transactions.Where(transaction =>
+            {
+                var listByDescription = transaction.Description.Contains(search);
+                var listByCategoryDescription = transaction.Category.Description.Contains(search); 
+                
+                return listByCategoryDescription && listByCategoryDescription;
+            }).ToList();
+            var mappedList = _mapper.Map<List<TransactionDto>>(searchedTransaction);
+            return mappedList;
         }
     }
 }

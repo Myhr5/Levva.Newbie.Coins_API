@@ -22,7 +22,7 @@ namespace Levva.Newbie.Coins.Controllers
             return Created("", createdCategory);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public ActionResult<CategoryDto> Get(int Id)
         {
             return _service.Get(Id);
@@ -36,14 +36,14 @@ namespace Levva.Newbie.Coins.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Update(CategoryDto category)
         {
             _service.Update(category);
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public IActionResult Delete(int Id)
         {
             _service.Delete(Id);

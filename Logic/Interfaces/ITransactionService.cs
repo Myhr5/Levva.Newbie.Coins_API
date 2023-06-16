@@ -12,6 +12,6 @@ namespace Levva.Newbie.Coins.Logic.Interfaces
         void Update(TransactionDto transaction);
         void Delete(int Id);
 
-        List<TransactionDto> SearchDescription(string search);
+        List<TransactionDto> Search(string search);
     }
 }
